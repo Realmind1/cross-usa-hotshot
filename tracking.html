@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Load | Cross USA HotShot Services</title>
+    <meta name="description" content="Track your freight in real-time with Cross USA HotShot Services.">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; line-height: 1.6; color: #222; }
+        .container { max-width: 1200px; margin: auto; padding: 20px; }
+        .header { background: #0d1b2a; color: white; text-align: center; padding: 40px 20px; }
+        .header a { color: #f97316; }
+        .map-wrap { margin: 30px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.15); }
+        .map-wrap iframe { width: 100%; height: 450px; border: 0; display: block; }
+        .status-card { background: #f4f4f4; border-radius: 8px; padding: 25px; margin: 20px 0; }
+        .status-badge { display: inline-block; background: #f97316; color: white; padding: 8px 20px; border-radius: 20px; font-weight: bold; }
+        .timeline { margin: 20px 0; padding: 0; list-style: none; }
+        .timeline li { padding: 12px 0; border-bottom: 1px solid #ddd; }
+        .timeline li:last-child { border-bottom: none; }
+        .timeline .done { color: #16a34a; font-weight: bold; }
+        .timeline .current { color: #f97316; font-weight: bold; }
+        .timeline .pending { color: #999; }
+        .btn { display: inline-block; background: #f97316; color: white; padding: 14px 28px; text-decoration: none; border-radius: 6px; margin-top: 15px; }
+        footer { background: #111; color: white; padding: 40px 20px; text-align: center; margin-top: 40px; }
+        .update-note { background: #fffbeb; border: 1px solid #f59e0b; border-radius: 8px; padding: 15px; margin: 20px 0; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="container">
+        <h1>Track Your Load</h1>
+        <p>Live shipment tracking from Cross USA HotShot Services</p>
+        <p><a href="index.html" style="color:white;">&larr; Back to Home</a></p>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- ============================================================
+         DISPATCHER: UPDATE THE INFO BELOW WHEN THE LOAD MOVES
+         Just change the text between the quotes and commit.
+         ============================================================ -->
+
+    <script>
+        var LOAD_INFO = {
+            loadNumber: "CUS-1042",
+            currentCity: "Dallas, TX",
+            status: "In Transit",
+            lastUpdate: "Oct 4, 2026 - 5:30 PM CT",
+            origin: "Charlotte, NC",
+            destination: "Phoenix, AZ",
+            eta: "Oct 6, 2026"
+        };
+    </script>
+
+    <div class="status-card">
+        <h2>Load <span id="loadNum"></span></h2>
+        <p><span class="status-badge" id="statusBadge"></span></p>
+        <p><strong>Current Location:</strong> <span id="curCity"></span></p>
+        <p><strong>Last Updated:</strong> <span id="lastUpd"></span></p>
+        <p><strong>Route:</strong> <span id="route"></span></p>
+        <p><strong>Estimated Delivery:</strong> <span id="eta"></span></p>
+    </div>
+
+    <div class="map-wrap">
+        <iframe id="gmap" loading="lazy" title="Shipment location map"></iframe>
+    </div>
+
+    <h2>Shipment Progress</h2>
+    <ul class="timeline" id="timeline"></ul>
+
+    <div class="update-note">
+        <strong>Note:</strong> Location is updated by our dispatch team at key milestones.
+        For immediate updates, call <a href="tel:+13365598320"><strong>(336) 559-8320</strong></a>.
+    </div>
+
+    <div style="text-align:center;">
+        <a href="index.html#quote-form" class="btn">Request Another Quote</a>
+    </div>
+</div>
+
+<footer>
+    <h3>Cross USA HotShot Services</h3>
+    <p>(336) 559-8320</p>
+    <p><a href="mailto:gabe.dispatch@crossusaservices.com" style="color:white;">gabe.dispatch@crossusaservices.com</a></p>
+    <p>&copy; 2026 Cross USA HotShot Services. All rights reserved.</p>
+</footer>
+
+<script>
+    document.getElementById('loadNum').textContent = LOAD_INFO.loadNumber;
+    document.getElementById('statusBadge').textContent = LOAD_INFO.status;
+    document.getElementById('curCity').textContent = LOAD_INFO.currentCity;
+    document.getElementById('lastUpd').textContent = LOAD_INFO.lastUpdate;
+    document.getElementById('route').textContent = LOAD_INFO.origin + " → " + LOAD_INFO.destination;
+    document.getElementById('eta').textContent = LOAD_INFO.eta;
+    document.getElementById('gmap').src =
+        "https://www.google.com/maps?q=" +
+        encodeURIComponent(LOAD_INFO.currentCity) +
+        "&output=embed";
+
+    var steps = ["Picked Up", "In Transit", "Out for Delivery", "Delivered"];
+    var currentIdx = steps.indexOf(LOAD_INFO.status);
+    if (currentIdx < 0) currentIdx = 1;
+
+    var html = "";
+    steps.forEach(function(s, i) {
+        var cls = i < currentIdx ? "done" : (i === currentIdx ? "current" : "pending");
+        var mark = i < currentIdx ? "✓ " : (i === currentIdx ? "● " : "○ ");
+        html += '<li class="' + cls + '">' + mark + s + "</li>";
+    });
+
+    document.getElementById('timeline').innerHTML = html;
+</script>
+
+</body>
+</html>
