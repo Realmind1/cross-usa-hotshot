@@ -30,9 +30,10 @@ A modern, responsive website for Cross USA HotShot Services, providing nationwid
 3. Or use a local development server:
    ```bash
    python -m http.server 8000
-   ```
-https://github.com/Realmind1/cross-usa-hotshot/commit/e3fabcbe34f3681d1eec92c5026c4d8a1009dab6
-
+   
+git add hero-truck.png loading-dock.png
+git commit -m "Add site images"
+git push
 ## Contact
 
 📞 24/7 Dispatch: 336-559-8320
