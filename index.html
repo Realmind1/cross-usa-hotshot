@@ -336,10 +336,113 @@
 
     <p>FMCSA Authorized Carrier</p>
 
-</footer><section id="quote-form" class="container" style="padding:50px 20px;">
+</footer>
+<section id="quote-form" class="container" style="padding:50px 20px;">
     <h2 style="text-align:center;">Request a Freight Quote</h2>
     <p style="text-align:center;max-width:600px;margin:0 auto 30px;">
-        Fill out the form below and our dispatch team will respond with a quote shortly.
+        Fill out the form below and hit submit — it'll open your email app with everything pre-filled, addressed to our dispatch team.
+    </p>
+
+    <form id="quoteForm" onsubmit="return sendQuote(event)"
+          style="max-width:700px;margin:0 auto;display:grid;gap:15px;">
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;">
+            <div>
+                <label><strong>Full Name *</strong></label><br>
+                <input type="text" id="q_name" required
+                       style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;box-sizing:border-box;">
+            </div>
+            <div>
+                <label><strong>Phone *</strong></label><br>
+                <input type="tel" id="q_phone" required
+                       style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;box-sizing:border-box;">
+            </div>
+        </div>
+
+        <div>
+            <label><strong>Email *</strong></label><br>
+            <input type="email" id="q_email" required
+                   style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;box-sizing:border-box;">
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;">
+            <div>
+                <label><strong>Pickup Location *</strong></label><br>
+                <input type="text" id="q_pickup" placeholder="City, State" required
+                       style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;box-sizing:border-box;">
+            </div>
+            <div>
+                <label><strong>Delivery Location *</strong></label><br>
+                <input type="text" id="q_delivery" placeholder="City, State" required
+                       style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;box-sizing:border-box;">
+            </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;">
+            <div>
+                <label><strong>Freight Type</strong></label><br>
+                <select id="q_freight"
+                        style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;box-sizing:border-box;">
+                    <option>General Freight</option>
+                    <option>Flatbed / Step Deck</option>
+                    <option>Heavy Equipment</option>
+                    <option>LTL / Partial</option>
+                    <option>Temperature-Controlled</option>
+                    <option>Other</option>
+                </select>
+            </div>
+            <div>
+                <label><strong>Date Needed</strong></label><br>
+                <input type="date" id="q_date"
+                       style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;box-sizing:border-box;">
+            </div>
+        </div>
+
+        <div>
+            <label><strong>Approx. Weight / Dimensions</strong></label><br>
+            <input type="text" id="q_weight" placeholder="e.g. 10,000 lbs, 20ft flatbed"
+                   style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;box-sizing:border-box;">
+        </div>
+
+        <div>
+            <label><strong>Additional Details</strong></label><br>
+            <textarea id="q_details" rows="4" placeholder="Describe your shipment..."
+                      style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;box-sizing:border-box;"></textarea>
+        </div>
+
+        <button type="submit"
+                style="background:#f97316;color:white;padding:16px 32px;border:none;border-radius:6px;font-size:18px;font-weight:bold;cursor:pointer;">
+            Submit Quote Request
+        </button>
+
+        <p style="text-align:center;color:#666;font-size:14px;">
+            Prefer to talk? Call <a href="tel:+13365598320"><strong>(336) 559-8320</strong></a>
+        </p>
+    </form>
+</section>
+
+<script>
+function sendQuote(e) {
+    e.preventDefault();
+    var get = function(id) { return document.getElementById(id).value || 'N/A'; };
+    var subject = encodeURIComponent('Quote Request - ' + get('q_pickup') + ' to ' + get('q_delivery'));
+    var body = encodeURIComponent(
+        'New Freight Quote Request\n' +
+        '========================\n\n' +
+        'Name: ' + get('q_name') + '\n' +
+        'Phone: ' + get('q_phone') + '\n' +
+        'Email: ' + get('q_email') + '\n\n' +
+        'Pickup: ' + get('q_pickup') + '\n' +
+        'Delivery: ' + get('q_delivery') + '\n' +
+        'Freight Type: ' + get('q_freight') + '\n' +
+        'Date Needed: ' + get('q_date') + '\n' +
+        'Weight/Dimensions: ' + get('q_weight') + '\n\n' +
+        'Details:\n' + get('q_details')
+    );
+    window.location.href = 'mailto:gabe.dispatch@crossusaservices.com?subject=' + subject + '&body=' + body;
+    return false;
+}
+</script>
     </p>
 
     <form action="https://formsubmit.co/gabe.dispatch@crossusaservices.com" method="POST"
