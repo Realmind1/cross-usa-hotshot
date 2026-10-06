@@ -118,185 +118,7 @@
             trucking network keeps your supply chain moving.
         </p>
         
-                <a href="#quote-form" class="btn">Get a Quote</a>
-        <a href="tracking.html" class="btn" style="background:#0d1b2a;margin-left:10px;">Track Your Load</a>
-
-
-       <p><strong><a href="tel:+13365598320" style="color:white;">Call (336) 559-8320</a></strong></p>
-    </div>
-</header>
-
-<section class="container stats">
-    <div>
-        <h2>98.6%</h2>
-        <p>On-Time Delivery Rate</p>
-    </div>
-
-    <div>
-        <h2>48</h2>
-        <p>States Served</p>
-    </div>
-
-    <div>
-        <h2>24/7</h2>
-        <p>Live Dispatch</p>
-    </div>
-
-    <div>
-        <h2>10M+</h2>
-        <p>Miles Driven</p>
-    </div>
-</section>
-
-<section class="container">
-    <h2>Built for Shippers Who Can't Afford Delays</h2>
-<img src="loading-dock.png" alt="Loading dock with workers" style="max-width:100%;height:auto;border-radius:8px;margin:20px 0;">
-    <p>
-        Every minute matters when production lines stop, deadlines approach,
-        or customers are waiting.
-    </p>
-
-    <p>
-        We specialize in expedited freight transportation, hotshot trucking,
-        flatbed hauling, and heavy equipment transport for businesses that
-        need dependable nationwide delivery.
-    </p>
-</section>
-
-<section class="services container">
-    <h2>Freight Solutions for Every Load</h2>
-
-    <div class="grid">
-
-        <div class="card">
-            <h3>Expedited Hotshot Freight</h3>
-            <p>
-                Time-critical freight moved fast with direct transportation
-                and minimal delays.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>Flatbed & Step Deck Transportation</h3>
-            <p>
-                Steel, machinery, building materials, and oversized freight
-                hauled safely nationwide.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>LTL & Partial Loads</h3>
-            <p>
-                Cost-effective shipping solutions for businesses that don't
-                require a full trailer.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>Heavy Equipment Transport</h3>
-            <p>
-                Construction and agricultural equipment transported
-                throughout the United States.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>Temperature-Controlled Freight</h3>
-            <p>
-                Reefer-capable transportation for climate-sensitive cargo.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>Dedicated Freight Lanes</h3>
-            <p>
-                Reliable recurring transportation with consistent pricing
-                and capacity.
-            </p>
-        </div>
-
-    </div>
-</section>
-
-<section class="features container">
-    <h2>Why Businesses Choose Cross USA HotShot Services</h2>
-
-    <div class="grid">
-
-        <div class="card">
-            <h3>Real-Time GPS Tracking</h3>
-            <p>
-                Shipment visibility and proactive dispatch communication.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>Licensed & Insured</h3>
-            <p>
-                FMCSA-authorized transportation with cargo coverage.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>Nationwide Coverage</h3>
-            <p>
-                Service throughout all 48 contiguous states.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>Transparent Pricing</h3>
-            <p>
-                Clear quotes with no hidden fees.
-            </p>
-        </div>
-
-    </div>
-</section>
-
-<section class="industries container">
-    <h2>Industries We Serve</h2>
-
-    <div class="grid">
-        <div class="card">Manufacturing</div>
-        <div class="card">Construction</div>
-        <div class="card">Agriculture</div>
-        <div class="card">Industrial Equipment</div>
-        <div class="card">Building Materials</div>
-        <div class="card">Wholesale Distribution</div>
-    </div>
-</section>
-
-<section class="faq container">
-    <h2>Frequently Asked Questions</h2>
-
-    <h3>What is hotshot trucking?</h3>
-    <p>
-        Hotshot trucking is expedited freight service designed for
-        time-sensitive shipments requiring fast pickup and delivery.
-    </p>
-
-    <h3>What types of freight do you haul?</h3>
-    <p>
-        We transport machinery, steel, heavy equipment, building materials,
-        pallets, and temperature-sensitive cargo.
-    </p>
-
-    <h3>Do you provide nationwide service?</h3>
-    <p>
-        Yes. We serve all 48 contiguous states.
-    </p>
-
-    <h3>Can I track my shipment?</h3>
-    <p>
-        Yes. Real-time GPS tracking and dispatch updates are available.
-    </p>
-
-    <h3>How do I receive a freight quote?</h3>
-    <p>
-        <a href="tel:+13365598320">Call (336) 559-8320</a> or submit your shipment information through our quote form.
-    </p>
-<section id="quote-form" class="container" style="padding:50px 20px;">
+                <section id="quote-form" class="container" style="padding:50px 20px;">
     <h2 style="text-align:center;">Request a Freight Quote</h2>
     <p style="text-align:center;max-width:600px;margin:0 auto 30px;">
         Fill out the form below and hit submit — it'll open your email app with everything pre-filled, addressed to our dispatch team.
@@ -383,22 +205,31 @@
 <script>
 function sendQuote(e) {
     e.preventDefault();
-    var get = function(id) { return document.getElementById(id).value || 'N/A'; };
-    var subject = encodeURIComponent('Quote Request - ' + get('q_pickup') + ' to ' + get('q_delivery'));
-    var body = encodeURIComponent(
-        'New Freight Quote Request\n' +
-        '========================\n\n' +
-        'Name: ' + get('q_name') + '\n' +
-        'Phone: ' + get('q_phone') + '\n' +
-        'Email: ' + get('q_email') + '\n\n' +
-        'Pickup: ' + get('q_pickup') + '\n' +
-        'Delivery: ' + get('q_delivery') + '\n' +
-        'Freight Type: ' + get('q_freight') + '\n' +
-        'Date Needed: ' + get('q_date') + '\n' +
-        'Weight/Dimensions: ' + get('q_weight') + '\n\n' +
-        'Details:\n' + get('q_details')
-    );
-    window.location.href = 'mailto:gabe.dispatch@crossusaservices.com?subject=' + subject + '&body=' + body;
+    var v = function(id) {
+        var el = document.getElementById(id);
+        return el ? el.value.trim() : '';
+    };
+    var lines = [
+        'QUOTE REQUEST',
+        'Name: ' + v('q_name'),
+        'Phone: ' + v('q_phone'),
+        'Email: ' + v('q_email'),
+        'Pickup: ' + v('q_pickup'),
+        'Delivery: ' + v('q_delivery'),
+        'Freight: ' + v('q_freight'),
+        'Date: ' + v('q_date'),
+        'Weight: ' + v('q_weight'),
+        'Details: ' + v('q_details')
+    ];
+    var subject = 'Quote Request - ' + v('q_pickup') + ' to ' + v('q_delivery');
+    var body = lines.join('\n');
+    var a = document.createElement('a');
+    a.href = 'mailto:gabe.dispatch@crossusaservices.com'
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(body);
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
     return false;
 }
 </script>
