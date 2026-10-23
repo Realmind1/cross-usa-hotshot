@@ -162,3 +162,99 @@
                 <label><strong>Delivery Location *</strong></label><br>
                 <input type="text" name="delivery" placeholder="City, State" required
                        style="width:100%;padding:12px
+;border:1px solid #ddd;border-radius:6px;box-sizing:border-box;">
+            </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;">
+            <div>
+                <label><strong>Freight Type</strong></label><br>
+                <select name="freight_type"
+                        style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;box-sizing:border-box;">
+                    <option>General Freight</option>
+                    <option>Flatbed / Step Deck</option>
+                    <option>Heavy Equipment</option>
+                    <option>LTL / Partial</option>
+                    <option>Temperature-Controlled</option>
+                    <option>Other</option>
+                </select>
+            </div>
+            <div>
+                <label><strong>Date Needed</strong></label><br>
+                <input type="date" name="date_needed"
+                       style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;box-sizing:border-box;">
+            </div>
+        </div>
+
+        <div>
+            <label><strong>Approx. Weight / Dimensions</strong></label><br>
+            <input type="text" name="weight" placeholder="e.g. 10,000 lbs, 20ft flatbed"
+                   style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;box-sizing:border-box;">
+        </div>
+
+        <div>
+            <label><strong>Additional Details</strong></label><br>
+            <textarea name="details" rows="4" placeholder="Describe your shipment..."
+                      style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;box-sizing:border-box;"></textarea>
+        </div>
+
+        <button type="submit" id="quoteSubmitBtn"
+                style="background:#f97316;color:white;padding:16px 32px;border:none;border-radius:6px;font-size:18px;font-weight:bold;cursor:pointer;">
+            Submit Quote Request
+        </button>
+
+        <p id="quoteStatus" style="text-align:center;font-weight:bold;display:none;"></p>
+
+        <p style="text-align:center;color:#666;font-size:14px;">
+            Prefer to talk? Call <a href="tel:+13365598320"><strong>(336) 559-8320</strong></a>
+        </p>
+    </form>
+</section>
+
+<script>
+function submitQuote(e) {
+    e.preventDefault();
+    var form = document.getElementById('quoteForm');
+    var btn = document.getElementById('quoteSubmitBtn');
+    var status = document.getElementById('quoteStatus');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    status.style.display = 'none';
+
+    var data = new FormData(form);
+    var obj = {};
+    data.forEach(function(v, k) { obj[k] = v; });
+
+    fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(obj)
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(res) {
+        status.style.display = 'block';
+        if (res.success) {
+            status.style.color = '#16a34a';
+            status.textContent = 'Quote request sent! Our dispatch team will respond shortly.';
+            form.reset();
+        } else {
+            status.style.color = '#dc2626';
+            status.textContent = 'Something went wrong. Please call (336) 559-8320 instead.';
+        }
+        btn.disabled = false;
+        btn.textContent = 'Submit Quote Request';
+    })
+    .catch(function() {
+        status.style.display = 'block';
+        status.style.color = '#dc2626';
+        status.textContent = 'Something went wrong. Please call (336) 559-8320 instead.';
+        btn.disabled = false;
+        btn.textContent = 'Submit Quote Request';
+    });
+    return false;
+}
+</script>
+</script>
+
+</body>
+</html>
